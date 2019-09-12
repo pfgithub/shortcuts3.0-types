@@ -1285,7 +1285,7 @@ export class Parameters {
 		this.values[internalName] = value;
 	}
 	has(internalName: string) {
-		return !!this.values[internalName];
+		return this.values[internalName] !== undefined;
 	}
 	get(internalName: "UUID"): string;
 	get(internalName: string): WFParameter;
