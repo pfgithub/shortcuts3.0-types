@@ -199,10 +199,10 @@ export class InverseConvertingContext {
 						)}`
 					);
 				}
-				rawWarning = true;
 				if (!value.parameters.has(paramName.data.Key)) {
 					return;
 				}
+				rawWarning = true;
 				return result.push(
 					`${param.data.Key}=${this.createRawAble(
 						value.parameters.get(paramName.data.Key)

@@ -1226,9 +1226,7 @@ export function toParam(value: WFParameter): ParameterType | undefined {
 		return AdjustOffset.inverse(value);
 	}
 	if (value.WFSerializationType === "WFContentPredicateTableTemplate") {
-		return new ErrorParameter(
-			"Inversion for filters is not implemented yet."
-		);
+		return new RawParameter(value);
 	}
 	if (value.WFSerializationType === "WFErrorParameter") {
 		return new ErrorParameter(

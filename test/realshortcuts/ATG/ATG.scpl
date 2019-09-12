@@ -29,7 +29,22 @@ If input=Equals value="Convert to GIF Options"
 	RunShortcut shortcut=v:Shortcut_details.name showWhileRunning=false -> mv:"Run Shortcut1"
 End -> mv:If1
 If input=Equals value="Photos to GIF"
-	FindPhotos filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? sortby="Creation Date" order="Latest First" -> mv:"Find Photos"
+	FindPhotos filter=:raw{
+		"Value": {
+			"WFActionParameterFilterPrefix": 0,
+			"WFContentPredicateBoundedDate": false,
+			"WFActionParameterFilterTemplates": [
+				{
+					"Operator": 4,
+					"VariableOverrides": {},
+					"Unit": 4,
+					"Removable": true,
+					"Property": "Album"
+				}
+			]
+		},
+		"WFSerializationType": "WFContentPredicateTableTemplate"
+	} sortby="Creation Date" order="Latest First" -> mv:"Find Photos"
 	Count Items -> mv:Count
 	If input=Equals number=0 value=0
 		ShowAlert title="🚨 \(mv:If1) 🚨" message="\nNo photos were found in your Photo Gallery.\n\nThe shortcut will now re-run." showCancelButton=false
@@ -73,7 +88,39 @@ If input=Equals value="Photos to GIF"
 	End -> mv:If3
 End -> mv:If4
 If input=Equals value="Video to GIF"
-	FindPhotos filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? sortby="Last Modified Date" order="Latest First" limit=false -> mv:"Find Photos1"
+	FindPhotos filter=:raw{
+		"Value": {
+			"WFActionParameterFilterPrefix": 1,
+			"WFContentPredicateBoundedDate": false,
+			"WFActionParameterFilterTemplates": [
+				{
+					"Property": "Media Type",
+					"Operator": 4,
+					"Unit": 4,
+					"VariableOverrides": {},
+					"Enumeration": "Video",
+					"Removable": true
+				},
+				{
+					"Property": "Album",
+					"Operator": 5,
+					"Unit": 4,
+					"VariableOverrides": {},
+					"Enumeration": "Time-lapse",
+					"Removable": true
+				},
+				{
+					"Property": "Album",
+					"Operator": 5,
+					"Unit": 4,
+					"VariableOverrides": {},
+					"Enumeration": "Slo-mo",
+					"Removable": true
+				}
+			]
+		},
+		"WFSerializationType": "WFContentPredicateTableTemplate"
+	} sortby="Last Modified Date" order="Latest First" limit=false -> mv:"Find Photos1"
 	Count Items -> mv:Count2
 	If input=Equals number=0 value=0
 		ShowAlert title="🚨 \(mv:If1) 🚨" message="\nNo Videos were found in your Photo Gallery.\n\nThe shortcut will now re-run." showCancelButton=false
@@ -97,7 +144,23 @@ If input=Equals value="Video to GIF"
 	End -> mv:If6
 End -> mv:If7
 If input=Equals value="Live Photo to GIF"
-	FindPhotos filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? -> mv:"Find Photos2"
+	FindPhotos filter=:raw{
+		"Value": {
+			"WFActionParameterFilterPrefix": 1,
+			"WFContentPredicateBoundedDate": false,
+			"WFActionParameterFilterTemplates": [
+				{
+					"Property": "Photo Type",
+					"Operator": 4,
+					"Unit": 4,
+					"VariableOverrides": {},
+					"Enumeration": "Live Photo",
+					"Removable": true
+				}
+			]
+		},
+		"WFSerializationType": "WFContentPredicateTableTemplate"
+	} -> mv:"Find Photos2"
 	Count Items -> mv:Count4
 	If input=Equals value=0
 		ShowAlert title="🚨 \(mv:If1) 🚨" message="\nThere were no Live Photos found in your Gallery.\n\nThe shortcut will now re-run." showCancelButton=false
@@ -120,7 +183,23 @@ If input=Equals value="Live Photo to GIF"
 	End -> mv:If9
 End -> mv:If10
 If input=Equals value="Panoramas to GIF"
-	FindPhotos filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? sortby="Last Modified Date" order="Latest First" -> mv:"Find Photos3"
+	FindPhotos filter=:raw{
+		"Value": {
+			"WFActionParameterFilterPrefix": 1,
+			"WFContentPredicateBoundedDate": false,
+			"WFActionParameterFilterTemplates": [
+				{
+					"Property": "Photo Type",
+					"Operator": 4,
+					"Unit": 4,
+					"VariableOverrides": {},
+					"Enumeration": "Panorama",
+					"Removable": true
+				}
+			]
+		},
+		"WFSerializationType": "WFContentPredicateTableTemplate"
+	} sortby="Last Modified Date" order="Latest First" -> mv:"Find Photos3"
 	Count Items -> mv:Count6
 	If input=Equals value=0
 		ShowAlert title="🚨 \(mv:If1) 🚨" message="\nThere were no Panoramas found in your Gallery.\n\nThe shortcut will now re-run." showCancelButton=false
@@ -157,7 +236,23 @@ If input=Equals value="Panoramas to GIF"
 	End -> mv:If12
 End -> mv:If13
 If input=Equals value="Burst Photos to GIF"
-	FindPhotos filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? sortby="Last Modified Date" order="Latest First" -> mv:"Find Photos4"
+	FindPhotos filter=:raw{
+		"Value": {
+			"WFActionParameterFilterPrefix": 1,
+			"WFContentPredicateBoundedDate": false,
+			"WFActionParameterFilterTemplates": [
+				{
+					"Property": "Photo Type",
+					"Operator": 4,
+					"Unit": 4,
+					"VariableOverrides": {},
+					"Enumeration": "Burst",
+					"Removable": true
+				}
+			]
+		},
+		"WFSerializationType": "WFContentPredicateTableTemplate"
+	} sortby="Last Modified Date" order="Latest First" -> mv:"Find Photos4"
 	Count Items -> mv:Count8
 	If input=Equals number=0 value=0
 		ShowAlert title="🚨 \(mv:If1) 🚨" message="\nThere were no Burst Photos found in your Gallery.\n\nThe shortcut will now re-run." showCancelButton=false
@@ -190,7 +285,23 @@ If input=Equals value="More Options…"
 	RunShortcut shortcut=v:Shortcut_details.name showWhileRunning=false -> mv:"Run Shortcut19"
 End -> mv:If17
 If input=Equals value="GIFs to GIF (Combine GIFs)"
-	FindPhotos filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? sortby="Last Modified Date" order="Latest First" -> mv:"Find Photos5"
+	FindPhotos filter=:raw{
+		"Value": {
+			"WFActionParameterFilterPrefix": 1,
+			"WFContentPredicateBoundedDate": false,
+			"WFActionParameterFilterTemplates": [
+				{
+					"Property": "Album",
+					"Operator": 4,
+					"Unit": 4,
+					"VariableOverrides": {},
+					"Enumeration": "Animated",
+					"Removable": true
+				}
+			]
+		},
+		"WFSerializationType": "WFContentPredicateTableTemplate"
+	} sortby="Last Modified Date" order="Latest First" -> mv:"Find Photos5"
 	Count Items -> mv:Count10
 	If input=Equals value=0
 		ShowAlert title="🚨 \(mv:If17) 🚨" message="\nThere were no GIFs found in your Gallery.\n\nThe shortcut will now re-run." showCancelButton=false
@@ -377,7 +488,24 @@ If input=Equals value="Flip GIF"
 		GetClipboard -> mv:"Get Clipboard"
 		SetVariable Gif
 	Otherwise
-		FindPhotos filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? sortby="Last Modified Date" order="Latest First" -> mv:"Find Photos6"
+		FindPhotos filter=:raw{
+			"Value": {
+				"WFActionParameterFilterPrefix": 1,
+				"WFContentPredicateBoundedDate": false,
+				"WFActionParameterFilterTemplates": [
+					{
+						"String": "GIF",
+						"VariableOverrides": {},
+						"Removable": true,
+						"Property": "Album",
+						"Enumeration": "Animated",
+						"Unit": 4,
+						"Operator": 4
+					}
+				]
+			},
+			"WFSerializationType": "WFContentPredicateTableTemplate"
+		} sortby="Last Modified Date" order="Latest First" -> mv:"Find Photos6"
 		Count Items -> mv:Count15
 		If input=Equals value=0
 			ShowAlert title="🚨 \(mv:If23) 🚨" message="\nThere were no GIFs found in your Gallery.\n\nThe shortcut will now re-run." showCancelButton=false
@@ -416,7 +544,24 @@ If input=Equals value="Rotate GIF"
 		GetClipboard -> mv:"Get Clipboard1"
 		SetVariable Gif
 	Otherwise
-		FindPhotos filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? sortby="Last Modified Date" order="Latest First" -> mv:"Find Photos7"
+		FindPhotos filter=:raw{
+			"Value": {
+				"WFActionParameterFilterPrefix": 1,
+				"WFContentPredicateBoundedDate": false,
+				"WFActionParameterFilterTemplates": [
+					{
+						"String": "GIF",
+						"VariableOverrides": {},
+						"Removable": true,
+						"Property": "Album",
+						"Enumeration": "Animated",
+						"Unit": 4,
+						"Operator": 4
+					}
+				]
+			},
+			"WFSerializationType": "WFContentPredicateTableTemplate"
+		} sortby="Last Modified Date" order="Latest First" -> mv:"Find Photos7"
 		Count Items -> mv:Count17
 		If input=Equals value=0
 			ShowAlert title="🚨 \(mv:If29) 🚨" message="\nThere were no GIFs found in your Gallery.\n\nThe shortcut will now re-run." showCancelButton=false
@@ -456,7 +601,23 @@ If input=Equals value="Reverse GIF"
 	Otherwise
 		Nothing
 		SetVariable "Reversed GIF"
-		FindPhotos filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? sortby="Time Taken" order="Latest First" -> mv:"Find Photos8"
+		FindPhotos filter=:raw{
+			"Value": {
+				"WFActionParameterFilterPrefix": 1,
+				"WFContentPredicateBoundedDate": false,
+				"WFActionParameterFilterTemplates": [
+					{
+						"Property": "Album",
+						"Operator": 4,
+						"Unit": 4,
+						"VariableOverrides": {},
+						"Enumeration": "Animated",
+						"Removable": true
+					}
+				]
+			},
+			"WFSerializationType": "WFContentPredicateTableTemplate"
+		} sortby="Time Taken" order="Latest First" -> mv:"Find Photos8"
 		Count Items -> mv:Count19
 		If input=Equals value=0
 			ShowAlert title="🚨 \(mv:If32) 🚨" message="\nThere were no GIFs found in your Gallery.\n\nThe shortcut will now re-run." showCancelButton=false
@@ -512,7 +673,24 @@ If input=Equals value="Forward-&-Back"
 	Otherwise
 		Nothing
 		SetVariable "Forward-&-Back"
-		FindPhotos filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? sortby="Time Taken" order="Latest First" -> mv:"Find Photos9"
+		FindPhotos filter=:raw{
+			"Value": {
+				"WFActionParameterFilterPrefix": 1,
+				"WFContentPredicateBoundedDate": false,
+				"WFActionParameterFilterTemplates": [
+					{
+						"String": "GIF",
+						"VariableOverrides": {},
+						"Removable": true,
+						"Property": "Album",
+						"Enumeration": "Animated",
+						"Unit": 4,
+						"Operator": 4
+					}
+				]
+			},
+			"WFSerializationType": "WFContentPredicateTableTemplate"
+		} sortby="Time Taken" order="Latest First" -> mv:"Find Photos9"
 		Count Items -> mv:Count21
 		If input=Equals value=0
 			ShowAlert title="🚨 \(mv:If32) 🚨" message="\nThere were no GIFs found in your Gallery.\n\nThe shortcut will now re-run." showCancelButton=false
@@ -568,7 +746,24 @@ If input=Equals value="𝐂𝐨𝐥𝐨𝐫 𝐄𝐟𝐟𝐞𝐜𝐭𝐬, 𝐏�
 		GetClipboard
 		SetVariable Gif
 	Otherwise
-		FindPhotos filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? sortby="Time Taken" order="Latest First" -> mv:"Find Photos10"
+		FindPhotos filter=:raw{
+			"Value": {
+				"WFActionParameterFilterPrefix": 1,
+				"WFContentPredicateBoundedDate": false,
+				"WFActionParameterFilterTemplates": [
+					{
+						"String": "GIF",
+						"VariableOverrides": {},
+						"Removable": true,
+						"Property": "Album",
+						"Enumeration": "Animated",
+						"Unit": 4,
+						"Operator": 4
+					}
+				]
+			},
+			"WFSerializationType": "WFContentPredicateTableTemplate"
+		} sortby="Time Taken" order="Latest First" -> mv:"Find Photos10"
 		Count Items -> mv:Count24
 		If input=Equals value=0
 			ShowAlert title="🚨 Alert 🚨" message="\nThere were no GIFs found in your Gallery.\n\nThe shortcut will now re-run." showCancelButton=false
@@ -697,7 +892,22 @@ If input=Equals value="𝐂𝐨𝐥𝐨𝐫 𝐄𝐟𝐟𝐞𝐜𝐭𝐬, 𝐏�
 	End
 End -> mv:If43
 If input=Equals value="GIF Grid from Photos"
-	FindPhotos filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? sortby="Time Taken" order="Latest First" -> mv:"Find Photos11"
+	FindPhotos filter=:raw{
+		"Value": {
+			"WFActionParameterFilterPrefix": 0,
+			"WFContentPredicateBoundedDate": false,
+			"WFActionParameterFilterTemplates": [
+				{
+					"Operator": 4,
+					"VariableOverrides": {},
+					"Unit": 4,
+					"Removable": true,
+					"Property": "Album"
+				}
+			]
+		},
+		"WFSerializationType": "WFContentPredicateTableTemplate"
+	} sortby="Time Taken" order="Latest First" -> mv:"Find Photos11"
 	Count Items -> mv:Count26
 	If input=Equals value=0
 		ShowAlert title="🚨 \(mv:If34) 🚨" message="\nThere were no Photos found in your Gallery.\n\nThe shortcut will now re-run." showCancelButton=false
@@ -728,7 +938,24 @@ If input=Equals value="GIF Grid from GIFs"
 	Number 0 -> mv:Number
 	SetVariable "Offsets List"
 	SetVariable Offset
-	FindPhotos filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? sortby="Time Taken" order="Latest First" -> mv:"Find Photos12"
+	FindPhotos filter=:raw{
+		"Value": {
+			"WFActionParameterFilterPrefix": 1,
+			"WFContentPredicateBoundedDate": false,
+			"WFActionParameterFilterTemplates": [
+				{
+					"String": "GIF",
+					"VariableOverrides": {},
+					"Removable": true,
+					"Property": "Album",
+					"Enumeration": "Animated",
+					"Unit": 4,
+					"Operator": 4
+				}
+			]
+		},
+		"WFSerializationType": "WFContentPredicateTableTemplate"
+	} sortby="Time Taken" order="Latest First" -> mv:"Find Photos12"
 	Count Items -> mv:Count28
 	If input=Equals value=0
 		ShowAlert title="🚨 \(mv:If46) 🚨" message="\nThere were no GIFs found in your Gallery.\n\nThe shortcut will now re-run." showCancelButton=false
@@ -789,7 +1016,24 @@ If input=Equals value="GIF Grid from GIFs"
 	End
 End -> mv:If47
 If input=Equals value="GIF Wall from GIFs"
-	FindPhotos filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? sortby="Time Taken" order="Latest First" -> mv:"Find Photos13"
+	FindPhotos filter=:raw{
+		"Value": {
+			"WFActionParameterFilterPrefix": 1,
+			"WFContentPredicateBoundedDate": false,
+			"WFActionParameterFilterTemplates": [
+				{
+					"String": "GIF",
+					"VariableOverrides": {},
+					"Removable": true,
+					"Property": "Album",
+					"Enumeration": "Animated",
+					"Unit": 4,
+					"Operator": 4
+				}
+			]
+		},
+		"WFSerializationType": "WFContentPredicateTableTemplate"
+	} sortby="Time Taken" order="Latest First" -> mv:"Find Photos13"
 	Count Items -> mv:Count31
 	If input=Equals value=0
 		ShowAlert title="🚨 \(mv:If47) 🚨" message="\nThere were no GIFs found in your Gallery.\n\nThe shortcut will now re-run." showCancelButton=false
@@ -810,7 +1054,14 @@ If input=Equals value="GIF Wall from GIFs"
 		Count Items -> mv:Count33
 		Repeat mv:Count33
 			GetVariable v:Photos
-			FilterImages filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? sortby=Random limit=false
+			FilterImages filter=:raw{
+				"Value": {
+					"WFActionParameterFilterPrefix": 1,
+					"WFContentPredicateBoundedDate": false,
+					"WFActionParameterFilterTemplates": []
+				},
+				"WFSerializationType": "WFContentPredicateTableTemplate"
+			} sortby=Random limit=false
 			CombineImages mode=Grid spacing=0 -> mv:"Combine Images2"
 		End -> mv:Repeat10
 		CopytoClipboard localOnly=true
@@ -825,7 +1076,24 @@ If input=Equals value="𝐎𝐭𝐡𝐞𝐫 𝐎𝐩𝐭𝐢𝐨𝐧𝐬 & 𝐌�
 	RunShortcut shortcut=v:Shortcut_details.name showWhileRunning=false
 End -> mv:If51
 If input=Equals value="Video from GIF (GIF to Video)"
-	FindPhotos filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? sortby="Time Taken" order="Latest First" -> mv:"Find Photos14"
+	FindPhotos filter=:raw{
+		"Value": {
+			"WFActionParameterFilterPrefix": 1,
+			"WFContentPredicateBoundedDate": false,
+			"WFActionParameterFilterTemplates": [
+				{
+					"String": "GIF",
+					"VariableOverrides": {},
+					"Removable": true,
+					"Property": "Album",
+					"Enumeration": "Animated",
+					"Unit": 4,
+					"Operator": 4
+				}
+			]
+		},
+		"WFSerializationType": "WFContentPredicateTableTemplate"
+	} sortby="Time Taken" order="Latest First" -> mv:"Find Photos14"
 	Count Items -> mv:Count34
 	If input=Equals value=0
 		ShowAlert title="🚨 \(mv:If51) 🚨" message="\nThere were no GIFs found in your Gallery.\n\nThe shortcut will now re-run." showCancelButton=false
@@ -863,7 +1131,24 @@ If input=Equals value="Search Giphy & Share"
 	RunShortcut shortcut=v:Shortcut_details.name showWhileRunning=false -> mv:"Run Shortcut51"
 End -> mv:If54
 If input=Equals value="Share a GIF from Gallery"
-	FindPhotos filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? sortby="Time Taken" order="Latest First" -> mv:"Find Photos15"
+	FindPhotos filter=:raw{
+		"Value": {
+			"WFActionParameterFilterPrefix": 1,
+			"WFContentPredicateBoundedDate": false,
+			"WFActionParameterFilterTemplates": [
+				{
+					"String": "GIF",
+					"VariableOverrides": {},
+					"Removable": true,
+					"Property": "Album",
+					"Enumeration": "Animated",
+					"Unit": 4,
+					"Operator": 4
+				}
+			]
+		},
+		"WFSerializationType": "WFContentPredicateTableTemplate"
+	} sortby="Time Taken" order="Latest First" -> mv:"Find Photos15"
 	Count Items -> mv:Count36
 	If input=Equals value=0
 		ShowAlert title="🚨 \(mv:If54) 🚨" message="\nThere were no GIFs found in your Gallery.\n\nThe shortcut will now re-run." showCancelButton=false
@@ -1037,7 +1322,24 @@ If input=Equals value="𝐆𝐈𝐅 𝐆𝐚𝐥𝐥𝐞𝐫𝐲"
 			ShowAlert title=v:Shortcut_details.name message="\nThe selected GIFs will be saved in this directory of your iCloud Drive:\n\nShortcuts/\(v:Shortcut_details.name)/\(v:Shortcut_details.GG)\n\nIf you want to remove a selected GIF from the gallery, then navigate to the directory and remove the GIF." showCancelButton=false
 			ChoosefromMenu prompt="Select an option:" items=["Add from Photo Gallery", "Add from Giphy", "⏎ Back"]
 			Case WFMenuItemTitle=:raw"Add from Photo Gallery" // Warning: This action contains some parameters that are not supported. Editing them may cause errors.
-				FindPhotos filter=??error: This parameter is an error: Inversion for filters is not implemented yet?? -> mv:"Find Photos16"
+				FindPhotos filter=:raw{
+					"Value": {
+						"WFActionParameterFilterPrefix": 1,
+						"WFContentPredicateBoundedDate": false,
+						"WFActionParameterFilterTemplates": [
+							{
+								"String": "GIF",
+								"VariableOverrides": {},
+								"Removable": true,
+								"Property": "Album",
+								"Enumeration": "Animated",
+								"Unit": 4,
+								"Operator": 4
+							}
+						]
+					},
+					"WFSerializationType": "WFContentPredicateTableTemplate"
+				} -> mv:"Find Photos16"
 				Count Items -> mv:Count41
 				If input=Equals value=0
 					ShowAlert title="🚨 \(v:Shortcut_details.name) 🚨" message="\nThere were no GIFs found in your Photo Gallery.\n\nThe shortcut will now re-run." showCancelButton=false
@@ -1379,7 +1681,7 @@ If input=Equals value="Adjust GIF"
 			GetClipboard
 			ChoosefromMenu prompt="Where would you like to share your GIF? " items=["Send as Message", "Share via Share Sheet", "Share to Instagram Story", "Upload to Imgur", "⏎ Back"]
 			Case WFMenuItemTitle=:raw"Send as Message" // Warning: This action contains some parameters that are not supported. Editing them may cause errors.
-				SendMessage  // Warning: This action contains some parameters that are not supported. Editing them may cause errors.
+				SendMessage
 				ShowNotification title="Your GIF has been sent." playSound=false
 			Case WFMenuItemTitle=:raw"Share via Share Sheet" // Warning: This action contains some parameters that are not supported. Editing them may cause errors.
 				Share
