@@ -1,6 +1,6 @@
 {
-	"name": "scpl",
-	"version": "1.14.0",
+	"name": "shortcuts3types",
+	"version": "0.1",
 	"main": "built/index.js",
 	"types": "built/index.d.ts",
 	"license": "MIT",
@@ -20,7 +20,7 @@
 		"email": "omegariisthebest@gmail.com",
 		"url": "https://pfgithub.github.io/"
 	},
-	"repository": "github:pfgithub/shortcutslang",
+	"repository": "github:pfgithub/shortcuts3.0-types",
 	"files": [
 		"/man",
 		"/built/index.js",
