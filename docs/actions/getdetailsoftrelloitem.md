@@ -1,26 +1,29 @@
 
 ## Get Details of Trello Item / GetDetailsofTrelloItem (internally `is.workflow.actions.properties.trello`)
 
-> This action is not yet complete. Some arguments may be missing.
-
 > This action requires that Shortcuts has permission to use WFTrelloAccessResource.
 
 
 
 ### usage
 ```
-GetDetailsofTrelloItem NotImplemented
+GetDetailsofTrelloItem ("")
 ```
 
 ### arguments
 
 ---
 
-#### This parameter is not implemented yet.
+### get: Enumeration [(Docs)](https://pfgithub.github.io/shortcutslang/gettingstarted#enum-select-field)
+**Allows Variables**: true
 
-The parameter type is _UndefinedCoercionClass. If you need to use this parameter, you may
-be able to use a raw value. Try converting a .shortcut to a .scpl containing
-the values you want in this parameter.
+
+
+Accepts a string 
+or variable
+containing one of the options:
+
+- ``
 
 ---
 
@@ -48,8 +51,10 @@ the values you want in this parameter.
 	"WFContentItemClass": "WFTrelloItemContentItem",
 	"Parameters": [
 		{
-			"Class": "_UndefinedCoercionClass",
-			"Key": "_UndefinedCoercion"
+			"Class": "WFEnumerationParameter",
+			"Key": "WFContentItemPropertyName",
+			"Label": "Get",
+			"Items": []
 		}
 	]
 }

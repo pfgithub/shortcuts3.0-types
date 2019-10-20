@@ -9,10 +9,16 @@ const args = process.argv.slice(2);
 const [input, output] = args;
 let action;
 
-if (input.endsWith(".json") && (output.endsWith(".shortcut") || output.endsWith(".plist"))) {
+if (
+	input.endsWith(".json") &&
+	(output.endsWith(".shortcut") || output.endsWith(".plist"))
+) {
 	action = "jsontoshortcut";
 }
-if ((input.endsWith(".shortcut") || input.endsWith(".plist")) && output.endsWith(".json")) {
+if (
+	(input.endsWith(".shortcut") || input.endsWith(".plist")) &&
+	output.endsWith(".json")
+) {
 	action = "shortcuttojson";
 }
 if (!action) {

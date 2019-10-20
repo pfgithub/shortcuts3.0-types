@@ -1,24 +1,27 @@
 
 ## Get Details of Event Attendees / GetDetailsofEventAttendees (internally `is.workflow.actions.properties.eventattendees`)
 
-> This action is not yet complete. Some arguments may be missing.
-
 
 
 ### usage
 ```
-GetDetailsofEventAttendees NotImplemented
+GetDetailsofEventAttendees ("")
 ```
 
 ### arguments
 
 ---
 
-#### This parameter is not implemented yet.
+### get: Enumeration [(Docs)](https://pfgithub.github.io/shortcutslang/gettingstarted#enum-select-field)
+**Allows Variables**: true
 
-The parameter type is _UndefinedCoercionClass. If you need to use this parameter, you may
-be able to use a raw value. Try converting a .shortcut to a .scpl containing
-the values you want in this parameter.
+
+
+Accepts a string 
+or variable
+containing one of the options:
+
+- ``
 
 ---
 
@@ -36,8 +39,10 @@ the values you want in this parameter.
 	"WatchCompatible": true,
 	"Parameters": [
 		{
-			"Class": "_UndefinedCoercionClass",
-			"Key": "_UndefinedCoercion"
+			"Class": "WFEnumerationParameter",
+			"Key": "WFContentItemPropertyName",
+			"Label": "Get",
+			"Items": []
 		}
 	]
 }

@@ -335,19 +335,23 @@ export interface WFContentItemFilterItemBaseString
 	String: string;
 }
 
-export interface WFContentItemFilterItemBaseText extends WFContentItemFilterItemBase {
+export interface WFContentItemFilterItemBaseText
+	extends WFContentItemFilterItemBase {
 	VariableOverrides: { stringValue: WFTextParameter };
 }
 
-export interface WFContentItemFilterItemNumber extends WFContentItemFilterItemBase {
+export interface WFContentItemFilterItemNumber
+	extends WFContentItemFilterItemBase {
 	Number: number;
 }
 
-export interface WFContentItemFilterItemBool extends WFContentItemFilterItemBase {
+export interface WFContentItemFilterItemBool
+	extends WFContentItemFilterItemBase {
 	Bool: boolean;
 }
 
-export interface WFContentItemFilterItemEnum extends WFContentItemFilterItemBase {
+export interface WFContentItemFilterItemEnum
+	extends WFContentItemFilterItemBase {
 	Enumeration: string;
 }
 
