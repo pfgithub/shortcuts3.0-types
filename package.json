@@ -13,7 +13,8 @@
 		"test": "jest --no-cache --coverage",
 		"actions": "tsc && node ./built/src/Data/GenActions",
 		"format": "yarn run prettier --write src/*** test/*.ts test/*.json index.ts .prettierrc .eslintrc.js modules.d.ts plistconv.js .travis.yml",
-		"prepublishOnly": "yarn actions && yarn format && yarn docs && yarn test"
+		"everything": "yarn actions && yarn format && yarn docs && yarn test",
+		"prepublishOnly": "yarn tsc"
 	},
 	"author": {
 		"name": "pfg",
