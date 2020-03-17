@@ -261,6 +261,7 @@ o.rawvalue = p(
 		o.string,
 		c`true`.scb(() => true),
 		c`false`.scb(_ => false),
+		c`undefined`.scb(_ => undefined),
 		regex(/^-?(?:[0-9]*\.[0-9]+|[0-9]+)/).scb(([v]) => +v)
 		// o.array
 	)

@@ -524,7 +524,7 @@ export class InverseConvertingContext {
 	}
 	createRawAble(val: {}) {
 		const indentLevel = this._indentLevel;
-		return `:raw${JSON.stringify(val, null, this.indent)
+		return `:raw ${(JSON.stringify(val, null, this.indent) || "undefined")
 			.split("\n")
 			.map((q, i) => (i === 0 ? q : this.indent.repeat(indentLevel) + q))
 			.join("\n")}`;

@@ -1,9 +1,5 @@
 import { ConvertingContext } from "../Converter";
-import {
-	Parse,
-	AsRaw,
-	AsAble,
-} from "../ParserData";
+import { Parse, AsRaw, AsAble } from "../ParserData";
 import { RawParameter } from "../OutputData";
 import { Position } from "../Production";
 
@@ -17,10 +13,11 @@ export class RawParse extends Parse implements AsRaw {
 		return true;
 	}
 	asRaw(cc: ConvertingContext) {
+		if (typeof this.dictOrString !== "object") {
+			return new RawParameter(this.dictOrString);
+		}
 		if (this.dictOrString.canBeRawDeepDictionary(cc)) {
-			return new RawParameter(
-				this.dictOrString.asRawDeepDictionary(cc)
-			);
+			return new RawParameter(this.dictOrString.asRawDeepDictionary(cc));
 		}
 		if (this.dictOrString.canBeString(cc)) {
 			return new RawParameter(this.dictOrString.asString(cc));
